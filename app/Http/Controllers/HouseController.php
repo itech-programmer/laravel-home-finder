@@ -9,6 +9,11 @@ class HouseController extends Controller
 {
     public function search(Request $request)
     {
+        if (!$request->filled('name') && !$request->filled('price') && !$request->filled('bedrooms') &&
+            !$request->filled('bathrooms') && !$request->filled('storeys') && !$request->filled('garages')) {
+            return response()->json([]);
+        }
+
         $query = House::query();
 
         if ($request->filled('name')) {

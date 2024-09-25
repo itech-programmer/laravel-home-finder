@@ -22,17 +22,24 @@ $(document).ready(function() {
                 var tbody = $('#results-table tbody');
                 tbody.empty();
 
-                response.forEach(function(house) {
-                    var row = '<tr>' +
-                        '<td>' + house.name + '</td>' +
-                        '<td>' + house.price + '</td>' +
-                        '<td>' + house.bedrooms + '</td>' +
-                        '<td>' + house.bathrooms + '</td>' +
-                        '<td>' + house.storeys + '</td>' +
-                        '<td>' + house.garages + '</td>' +
+                if (response.length > 0) {
+                    response.forEach(function(house) {
+                        var row = '<tr>' +
+                            '<td>' + house.name + '</td>' +
+                            '<td>' + house.price + '</td>' +
+                            '<td>' + house.bedrooms + '</td>' +
+                            '<td>' + house.bathrooms + '</td>' +
+                            '<td>' + house.storeys + '</td>' +
+                            '<td>' + house.garages + '</td>' +
+                            '</tr>';
+                        tbody.append(row);
+                    });
+                } else {
+                    var noResultsRow = '<tr>' +
+                        '<td colspan="6" class="text-center">Результаты не найдены</td>' +
                         '</tr>';
-                    tbody.append(row);
-                });
+                    tbody.append(noResultsRow);
+                }
             }
         });
     });
